@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #7f2880;
+  --color-primary-light: #c084c8;
+  --color-primary-subtle: #EFE0F0;
+  --color-accent: #FDF6EC;
+  --color-dark-surface: #1A1A2E;
+  --color-card-dark: #252540;
+  --color-text-primary: #1A1A1A;
+  --color-text-muted: #6B7280;
+  --color-border: #E5E7EB;
+  --color-dark-border: #374151;
+
+  --font-sans: 'DM Sans', sans-serif;
+
+  --gradient-primary: linear-gradient(135deg, #7f2880 0%, #a855a0 50%, #c084c8 100%);
+  --gradient-dark: linear-gradient(135deg, #1A1A2E 0%, #2D1B4E 100%);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c084c8;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7f2880;
+}
+
+/* Hide scrollbar for horizontal scroll rows */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
