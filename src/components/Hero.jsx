@@ -31,12 +31,12 @@ const ShootingStar = () => {
 // Premium 3D Medical Solar System Component
 function HeroMedia() {
     const orbitingItems = [
-        { img: 'https://img.icons8.com/clouds/512/heart-with-pulse.png', color: '#FF4D4D', radius: 140, duration: 25, delay: 0 },
-        { img: 'https://img.icons8.com/fluency/512/stethoscope.png', color: '#4D96FF', radius: 200, duration: 35, delay: -5 },
-        { img: 'https://img.icons8.com/fluency/512/brain.png', color: '#FF99CC', radius: 170, duration: 30, delay: -10 },
-        { img: 'https://img.icons8.com/fluency/512/dna-helix.png', color: '#6BCB77', radius: 260, duration: 45, delay: -15 },
-        { img: 'https://img.icons8.com/fluency/512/microscope.png', color: '#FFD93D', radius: 320, duration: 40, delay: -20 },
-        { img: 'https://img.icons8.com/fluency/512/electrocardiogram.png', color: '#FF7B54', radius: 100, duration: 20, delay: -2 },
+        { img: 'https://img.icons8.com/clouds/512/heart-with-pulse.png', color: '#FF4D4D', radius: 220, duration: 25, delay: 0 },
+        { img: 'https://img.icons8.com/fluency/512/stethoscope.png', color: '#4D96FF', radius: 320, duration: 35, delay: -5 },
+        { img: 'https://img.icons8.com/fluency/512/brain.png', color: '#FF99CC', radius: 270, duration: 30, delay: -10 },
+        { img: 'https://img.icons8.com/fluency/512/dna-helix.png', color: '#6BCB77', radius: 400, duration: 45, delay: -15 },
+        { img: 'https://img.icons8.com/fluency/512/microscope.png', color: '#FFD93D', radius: 480, duration: 40, delay: -20 },
+        { img: 'https://img.icons8.com/fluency/512/electrocardiogram.png', color: '#FF7B54', radius: 160, duration: 20, delay: -2 },
     ];
 
     return (
@@ -52,7 +52,7 @@ function HeroMedia() {
                 }}
             >
                 {/* 3D Orbit Rings */}
-                {[100, 140, 170, 200, 260, 320].map((r, i) => (
+                {[160, 220, 270, 320, 400, 480].map((r, i) => (
                     <div
                         key={i}
                         className="absolute border border-white/10 rounded-full"
@@ -82,36 +82,49 @@ function HeroMedia() {
                             transformStyle: 'preserve-3d',
                         }}
                     >
+                        {/* 1. Counter-rotate Z so the item doesn't spin upside down */}
                         <motion.div
-                            className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                            animate={{ 
-                                rotateZ: -360,
-                                rotateX: -60,
-                                rotateY: 15,
-                                scale: [0.7, 1.1, 0.7],
-                                z: [0, 50, 0, -50, 0]
-                            }}
+                            className="absolute top-0 left-1/2 w-0 h-0"
+                            animate={{ rotateZ: -360 }}
                             transition={{
                                 duration: item.duration,
                                 repeat: Infinity,
                                 ease: "linear",
                                 delay: item.delay
                             }}
+                            style={{ transformStyle: 'preserve-3d' }}
                         >
+                            {/* 2. Counter-tilt X and Y so it acts like a 3D billboard facing the camera */}
                             <motion.div
-                                className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl flex items-center justify-center"
+                                className="absolute -translate-x-1/2 -translate-y-1/2"
                                 style={{ transformStyle: 'preserve-3d' }}
+                                animate={{
+                                    rotateX: -60,
+                                    rotateY: 15,
+                                    scale: [0.7, 1.1, 0.7],
+                                }}
+                                transition={{
+                                    duration: item.duration,
+                                    repeat: Infinity,
+                                    ease: "linear",
+                                    delay: item.delay
+                                }}
                             >
-                                <div 
-                                    className="absolute inset-0 rounded-2xl opacity-10 blur-xl"
-                                    style={{ backgroundColor: item.color }}
-                                />
-                                
-                                <img
-                                    src={item.img}
-                                    alt="Medical Illustration"
-                                    className="w-[80%] h-[80%] object-contain filter drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"
-                                />
+                                <motion.div
+                                    className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl flex items-center justify-center"
+                                    style={{ transformStyle: 'preserve-3d' }}
+                                >
+                                    <div 
+                                        className="absolute inset-0 rounded-2xl opacity-20 blur-xl"
+                                        style={{ backgroundColor: item.color }}
+                                    />
+                                    
+                                    <img
+                                        src={item.img}
+                                        alt="Medical Illustration"
+                                        className="w-[80%] h-[80%] object-contain filter drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]"
+                                    />
+                                </motion.div>
                             </motion.div>
                         </motion.div>
                     </motion.div>
@@ -352,7 +365,7 @@ export default function Hero() {
                     </div>
 
                     {/* Right Illustration — Distant Background Element */}
-                    <div className="absolute right-[-10%] top-1/2 -translate-y-1/2 w-[65%] h-[120%] z-0 pointer-events-none opacity-90 mix-blend-screen">
+                    <div className="absolute right-[-30%] top-1/2 -translate-y-1/2 w-[110%] h-[180%] z-0 pointer-events-none opacity-90 mix-blend-screen">
                         <HeroMedia />
                     </div>
                 </div>
