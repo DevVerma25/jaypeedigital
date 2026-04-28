@@ -1,89 +1,144 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, BookOpen, Clock, Bookmark, ChevronDown, PlayCircle, User, GraduationCap, UserCheck } from 'lucide-react';
+import { ArrowRight, BookOpen, Clock, Bookmark, ChevronDown, PlayCircle, User, GraduationCap, UserCheck, Heart, Stethoscope, Brain, Dna, Activity, Microscope } from 'lucide-react';
 import { useDarkMode } from '../context/DarkModeContext';
 import { useUserState } from '../context/UserStateContext';
 
-// 3D Media Component for Hero
-function HeroMedia() {
+// Shooting Star Component
+const ShootingStar = () => {
     return (
-        <div className="relative w-full max-w-lg aspect-square flex items-center justify-center">
-            {/* Background Glow */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#7f2880]/20 to-[#c084c8]/20 rounded-full blur-[100px] animate-pulse" />
+        <motion.div
+            initial={{ x: '-100%', y: '100%', opacity: 0 }}
+            animate={{ 
+                x: ['0%', '200%'], 
+                y: ['0%', '-100%'], 
+                opacity: [0, 1, 0] 
+            }}
+            transition={{
+                duration: 3 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 25,
+                ease: "linear"
+            }}
+            className="absolute w-28 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent rotate-[-45deg] blur-[1px] shadow-[0_0_12px_rgba(255,255,255,0.8)]"
+            style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 50}%`,
+            }}
+        />
+    );
+};
 
-            {/* 3D Popout Book */}
+// Premium 3D Medical Solar System Component
+function HeroMedia() {
+    const orbitingItems = [
+        { img: 'https://img.icons8.com/clouds/512/heart-with-pulse.png', color: '#FF4D4D', radius: 140, duration: 25, delay: 0 },
+        { img: 'https://img.icons8.com/fluency/512/stethoscope.png', color: '#4D96FF', radius: 200, duration: 35, delay: -5 },
+        { img: 'https://img.icons8.com/fluency/512/brain.png', color: '#FF99CC', radius: 170, duration: 30, delay: -10 },
+        { img: 'https://img.icons8.com/fluency/512/dna-helix.png', color: '#6BCB77', radius: 260, duration: 45, delay: -15 },
+        { img: 'https://img.icons8.com/fluency/512/microscope.png', color: '#FFD93D', radius: 320, duration: 40, delay: -20 },
+        { img: 'https://img.icons8.com/fluency/512/electrocardiogram.png', color: '#FF7B54', radius: 100, duration: 20, delay: -2 },
+    ];
+
+    return (
+        <div className="relative w-full h-full flex items-center justify-center pointer-events-none" style={{ perspective: '2000px' }}>
+            {/* Ambient Background Glows */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-[#7f2880]/15 to-[#c084c8]/5 rounded-full blur-[140px]" />
+            {/* 3D Tilted Orbit Container */}
+            <div 
+                className="absolute inset-0 flex items-center justify-center"
+                style={{ 
+                    transformStyle: 'preserve-3d',
+                    transform: 'rotateX(60deg) rotateY(-15deg)'
+                }}
+            >
+                {/* 3D Orbit Rings */}
+                {[100, 140, 170, 200, 260, 320].map((r, i) => (
+                    <div
+                        key={i}
+                        className="absolute border border-white/10 rounded-full"
+                        style={{
+                            width: r * 2,
+                            height: r * 2,
+                            boxShadow: '0 0 20px rgba(255,255,255,0.02)',
+                        }}
+                    />
+                ))}
+
+                {/* Orbiting Medical Images */}
+                {orbitingItems.map((item, index) => (
+                    <motion.div
+                        key={index}
+                        className="absolute"
+                        animate={{ rotateZ: 360 }}
+                        transition={{
+                            duration: item.duration,
+                            repeat: Infinity,
+                            ease: "linear",
+                            delay: item.delay
+                        }}
+                        style={{
+                            width: item.radius * 2,
+                            height: item.radius * 2,
+                            transformStyle: 'preserve-3d',
+                        }}
+                    >
+                        <motion.div
+                            className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                            animate={{ 
+                                rotateZ: -360,
+                                rotateX: -60,
+                                rotateY: 15,
+                                scale: [0.7, 1.1, 0.7],
+                                z: [0, 50, 0, -50, 0]
+                            }}
+                            transition={{
+                                duration: item.duration,
+                                repeat: Infinity,
+                                ease: "linear",
+                                delay: item.delay
+                            }}
+                        >
+                            <motion.div
+                                className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl flex items-center justify-center"
+                                style={{ transformStyle: 'preserve-3d' }}
+                            >
+                                <div 
+                                    className="absolute inset-0 rounded-2xl opacity-10 blur-xl"
+                                    style={{ backgroundColor: item.color }}
+                                />
+                                
+                                <img
+                                    src={item.img}
+                                    alt="Medical Illustration"
+                                    className="w-[80%] h-[80%] object-contain filter drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"
+                                />
+                            </motion.div>
+                        </motion.div>
+                    </motion.div>
+                ))}
+            </div>
+
+            {/* Central Sun: Jaypee Logo */}
             <motion.div
                 animate={{
-                    y: [0, -20, 0],
-                    rotateY: [-15, -10, -15],
-                    rotateX: [5, 8, 5],
+                    y: [0, -8, 0],
                 }}
                 transition={{
                     duration: 6,
                     repeat: Infinity,
                     ease: "easeInOut"
                 }}
-                className="relative z-20 w-64 sm:w-80 shadow-[20px_30px_60px_-15px_rgba(0,0,0,0.5)] rounded-r-lg preserve-3d"
-                style={{
-                    perspective: '1200px',
-                    transformStyle: 'preserve-3d',
-                }}
+                className="relative z-30"
             >
-                <img
-                    src="/images/hero_book.png"
-                    alt="Clinical Excellence Book"
-                    className="w-full h-auto rounded-r-lg block"
-                    style={{
-                        transform: 'rotateY(-20deg)',
-                        boxShadow: 'inset 4px 0 10px rgba(0,0,0,0.2)'
-                    }}
-                />
-                {/* Book Spine Shadow */}
-                <div className="absolute top-0 bottom-0 left-0 w-4 bg-black/20 blur-[2px] rounded-l-sm" style={{ transform: 'translateX(-2px) rotateY(-20deg)' }} />
-            </motion.div>
-
-            {/* Floating Video Card */}
-            <motion.div
-                animate={{
-                    y: [0, 20, 0],
-                    x: [0, -10, 0],
-                }}
-                transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5
-                }}
-                className="absolute -bottom-4 -left-4 sm:-bottom-10 sm:-left-10 z-30 w-48 sm:w-64 bg-[#1A1A2E]/80 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden shadow-2xl group cursor-pointer"
-            >
-                <div className="relative aspect-video">
+                <div className="absolute inset-0 bg-white/10 rounded-full blur-2xl" />
+                <div className="relative w-24 h-24 sm:w-32 sm:h-32 flex items-center justify-center rounded-full bg-white/5 backdrop-blur-3xl border border-white/20 shadow-[0_0_60px_rgba(255,255,255,0.05)] p-6 overflow-hidden">
                     <img
-                        src="/images/hero_video.png"
-                        alt="Surgery Video"
-                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                        src="/images/Jaypee-Logo.png"
+                        alt="Jaypee Digital Logo"
+                        className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/30 group-hover:scale-110 transition-transform">
-                            <PlayCircle size={24} fill="currentColor" fillOpacity="0.3" />
-                        </div>
-                    </div>
-                </div>
-                <div className="p-3 sm:p-4">
-                    <div className="text-[10px] font-bold text-[#c9a84c] uppercase tracking-widest mb-1">Interactive Lesson</div>
-                    <div className="text-xs sm:text-sm font-bold text-white line-clamp-1">Mastering Cardiology Update</div>
                 </div>
             </motion.div>
-
-            {/* Decorative Floating Dots */}
-            <motion.div
-                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute top-10 right-10 w-3 h-3 bg-[#c9a84c] rounded-full shadow-[0_0_15px_#c9a84c]"
-            />
-            <motion.div
-                animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.7, 0.3] }}
-                transition={{ duration: 7, repeat: Infinity, delay: 1 }}
-                className="absolute bottom-20 right-0 w-2 h-2 bg-[#7f2880] rounded-full shadow-[0_0_10px_#7f2880]"
-            />
         </div>
     );
 }
@@ -92,8 +147,8 @@ export default function Hero() {
     const { darkMode } = useDarkMode();
     const { isLoggedIn, setUserState, userState, currentUser } = useUserState();
 
-    const lightGradient = 'linear-gradient(135deg, #2b0b2b 0%, #4b0f47 40%, #6e2a6e 70%, #a85aa0 100%)';
-    const darkGradient = 'linear-gradient(135deg, #0d0115 0%, #1c0826 40%, #3d1050 70%, #7f2880 100%)';
+    const lightGradient = 'linear-gradient(135deg, #1a051a 0%, #2b0b2b 55%, #4b0f47 85%, #6e2a6e 100%)';
+    const darkGradient = 'linear-gradient(135deg, #05000a 0%, #0d0115 60%, #1c0826 85%, #3d1050 100%)';
 
     const bgGradient = darkMode ? darkGradient : lightGradient;
     const curveFill = darkMode ? '#1A1A2E' : '#EFE0F0';
@@ -168,6 +223,20 @@ export default function Hero() {
                     }}
                     className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-[#c084c8]/10 rounded-full blur-3xl"
                 />
+
+                {/* Starry Background for the entire Hero section */}
+                <div className="absolute inset-0 pointer-events-none">
+                    {[...Array(100)].map((_, i) => (
+                        <motion.div
+                            key={`bg-star-${i}`}
+                            animate={{ opacity: [0.1, 0.75, 0.1], scale: [1, 1.4, 1] }}
+                            transition={{ duration: 6 + Math.random() * 10, repeat: Infinity, delay: Math.random() * 20 }}
+                            className="absolute w-[2px] h-[2px] bg-white rounded-full shadow-[0_0_6px_rgba(255,255,255,0.6)]"
+                            style={{ top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%` }}
+                        />
+                    ))}
+                    {[...Array(12)].map((_, i) => <ShootingStar key={`bg-shooting-${i}`} />)}
+                </div>
             </div>
 
             {/* Prototype Toggle Banner */}
@@ -175,7 +244,7 @@ export default function Hero() {
                 PROTOTYPE TOGGLE — Switch user state for demo review
             </div>
 
-            <div className="flex-1 flex flex-col justify-center pt-24 pb-40 relative z-10">
+            <div className="flex-1 flex flex-col justify-center pt-16 pb-24 relative z-10">
                 {/* Toggle pill */}
                 <div className="flex justify-center mb-16">
                     <div className={`flex items-center rounded-full p-1 border ${darkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-white/50'} shadow-xl backdrop-blur-md`}>
@@ -195,9 +264,9 @@ export default function Hero() {
                     </div>
                 </div>
 
-                <div className="max-w-[1440px] mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-16 lg:gap-24">
+                <div className="max-w-[1440px] w-full mx-auto px-6 flex flex-col md:flex-row items-center relative min-h-[500px]">
                     {/* Left Content — 55% */}
-                    <div className="w-full md:flex-[0_0_55%]">
+                    <div className="w-full md:w-[60%] relative z-10">
                         {!isLoggedIn ? (
                             /* GUEST STATE */
                             <motion.div
@@ -205,26 +274,27 @@ export default function Hero() {
                                 initial={{ opacity: 0, x: -30 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.6 }}
+                                className="relative z-10"
                             >
-                                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-xs font-bold mb-8 backdrop-blur-md border border-white/10 uppercase tracking-widest">
+                                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-[10px] font-bold mb-8 backdrop-blur-md border border-white/10 uppercase tracking-widest">
                                     🇮🇳 India's Premier Medical Knowledge Platform
                                 </div>
-                                <h1 className="text-5xl sm:text-6xl lg:text-7xl leading-[1.1] mb-6 font-extrabold" style={{ fontFamily: 'DM Sans, sans-serif', color: '#EFECE0', letterSpacing: '-0.03em' }}>
+                                <h1 className="text-5xl sm:text-6xl lg:text-[80px] leading-[1] mb-8 font-black" style={{ fontFamily: 'DM Sans, sans-serif', color: '#EFECE0', letterSpacing: '-0.04em' }}>
                                     Learn Smarter.<br />
                                     Practice Deeper.<br />
-                                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#f3e1a5] to-[#c9a84c]">Grow Faster.</span>
+                                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#f3e1a5] via-[#d4af37] to-[#c9a84c]">Grow Faster.</span>
                                 </h1>
 
-                                <p className="text-lg sm:text-xl text-white/70 mb-10 max-w-2xl leading-relaxed">
+                                <p className="text-lg text-white/50 mb-12 max-w-xl leading-relaxed font-medium">
                                     Access <span className="text-white font-bold">4,289+</span> eBooks, <span className="text-white font-bold">12,769+</span> videos, and <span className="text-white font-bold">233,738+</span> MCQs — all meticulously mapped to your curriculum and specialty.
                                 </p>
 
-                                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10">
-                                    <button className="px-10 py-4 rounded-xl font-bold text-[#1A1A1A] bg-gradient-to-r from-[#f3e1a5] to-[#c9a84c] shadow-2xl hover:scale-[1.05] transition-all hover:shadow-[#c9a84c]/20">
+                                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-5 mb-12">
+                                    <button className="px-10 py-5 rounded-xl font-black text-[#1A1A2E] bg-gradient-to-r from-[#f3e1a5] to-[#c9a84c] shadow-2xl hover:scale-[1.05] transition-all hover:shadow-[#c9a84c]/20 uppercase tracking-widest text-xs">
                                         Start Learning Free
                                     </button>
-                                    <button className="px-10 py-4 rounded-xl border-2 border-white/30 text-white font-bold hover:bg-white/10 transition-all backdrop-blur-sm">
-                                        Explore Library →
+                                    <button className="px-10 py-5 rounded-xl border-2 border-white/20 text-white font-black hover:bg-white/10 transition-all backdrop-blur-sm uppercase tracking-widest text-xs flex items-center gap-2">
+                                        Explore Library <ArrowRight size={18} />
                                     </button>
                                 </div>
 
@@ -274,15 +344,15 @@ export default function Hero() {
                                     ))}
                                 </div>
 
-                                <button className="flex items-center gap-3 px-10 py-5 rounded-2xl bg-white text-[#7f2880] font-black text-sm uppercase tracking-wider hover:bg-[#EFE0F0] transition-all hover:shadow-2xl hover:-translate-y-1 active:scale-95">
+                                <button className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-white text-[#7f2880] font-black text-sm uppercase tracking-wider hover:bg-[#EFE0F0] transition-all hover:shadow-2xl hover:-translate-y-1 active:scale-95">
                                     Resume Your Path <ArrowRight size={18} />
                                 </button>
                             </motion.div>
                         )}
                     </div>
 
-                    {/* Right Illustration — 45% */}
-                    <div className="w-full md:flex-[0_0_45%] flex items-center justify-center">
+                    {/* Right Illustration — Distant Background Element */}
+                    <div className="absolute right-[-10%] top-1/2 -translate-y-1/2 w-[65%] h-[120%] z-0 pointer-events-none opacity-90 mix-blend-screen">
                         <HeroMedia />
                     </div>
                 </div>
