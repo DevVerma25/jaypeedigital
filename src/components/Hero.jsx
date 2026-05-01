@@ -161,8 +161,8 @@ export default function Hero() {
     const { darkMode } = useDarkMode();
     const { isLoggedIn, setUserState, userState, currentUser } = useUserState();
 
-    const lightGradient = 'linear-gradient(135deg, #1a051a 0%, #2b0b2b 55%, #4b0f47 85%, #6e2a6e 100%)';
-    const darkGradient = 'linear-gradient(135deg, #05000a 0%, #0d0115 60%, #1c0826 85%, #3d1050 100%)';
+    const lightGradient = 'linear-gradient(135deg, #000000 0%, #120212 60%, #250625 100%)';
+    const darkGradient = 'linear-gradient(135deg, #000000 0%, #020005 60%, #080110 100%)';
 
     const bgGradient = darkMode ? darkGradient : lightGradient;
     const curveFill = darkMode ? '#1A1A2E' : '#EFE0F0';
@@ -175,7 +175,10 @@ export default function Hero() {
     };
 
     return (
-        <section style={{ background: bgGradient }} className="min-h-screen flex flex-col relative overflow-hidden">
+        <section 
+            style={{ background: bgGradient }} 
+            className="min-h-screen flex flex-col relative overflow-hidden contrast-[1.1] brightness-[1.05]"
+        >
             {/* Floating decorative elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <motion.div

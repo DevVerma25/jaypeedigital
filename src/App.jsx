@@ -9,7 +9,6 @@ import IntelligentSearch from './components/IntelligentSearch';
 import TrendingTopics from './components/TrendingTopics';
 import Newsletter from './components/Newsletter';
 import Testimonials from './components/Testimonials';
-import ContentCounters from './components/ContentCounters';
 import Footer from './components/Footer';
 import AccessibilityBar from './components/AccessibilityBar';
 import { useUserState } from './context/UserStateContext';
@@ -51,9 +50,6 @@ function AppInner() {
 
         {/* Newsletter */}
         <Newsletter />
-
-        {/* Content Counters */}
-        <ContentCounters />
       </main>
 
       {/* Footer */}

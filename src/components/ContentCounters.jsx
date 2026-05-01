@@ -48,10 +48,7 @@ export default function ContentCounters() {
     const darkBg = 'linear-gradient(135deg, #0d0115 0%, #1c0826 40%, #3d1050 70%, #7f2880 100%)';
 
     return (
-        <section
-            className="py-24"
-            style={{ background: darkMode ? darkBg : lightBg }}
-        >
+        <section className="pt-12 pb-24 relative overflow-hidden">
             <div className="max-w-[1440px] mx-auto px-6">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 md:gap-4">
                     {contentCounters.map((counter, i) => {
