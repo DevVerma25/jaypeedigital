@@ -112,11 +112,11 @@ function HeroMedia() {
                                 }}
                             >
                                 <motion.div
-                                    className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl flex items-center justify-center"
+                                    className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center"
                                     style={{ transformStyle: 'preserve-3d' }}
                                 >
                                     <div 
-                                        className="absolute inset-0 rounded-2xl opacity-20 blur-xl"
+                                        className="absolute inset-0 opacity-30 blur-2xl"
                                         style={{ backgroundColor: item.color }}
                                     />
                                     
