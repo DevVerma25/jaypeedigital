@@ -253,15 +253,12 @@ export default function Hero() {
                 </div>
             </div>
 
-            {/* Prototype Toggle Banner */}
-            <div className="bg-amber-50 border border-amber-200 text-amber-800 text-[10px] uppercase tracking-widest font-bold py-1 px-4 text-center absolute top-0 left-0 right-0 z-10">
-                PROTOTYPE TOGGLE — Switch user state for demo review
-            </div>
 
-            <div className="flex-1 flex flex-col justify-center pt-16 pb-24 relative z-10">
-                {/* Toggle pill */}
-                <div className="flex justify-center mb-16">
-                    <div className={`flex items-center rounded-full p-1 border ${darkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-white/50'} shadow-xl backdrop-blur-md`}>
+
+            <div className="flex-1 flex flex-col justify-center pt-32 sm:pt-40 pb-24 relative z-10">
+                {/* Toggle pill - Shifted to right as requested */}
+                <div className="flex justify-end mb-8 px-6 sm:px-12">
+                    <div className={`flex items-center rounded-xl p-1 border ${darkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-white/50'} shadow-2xl backdrop-blur-md`}>
                         {['guest', 'student', 'faculty'].map(state => (
                             <button
                                 key={state}

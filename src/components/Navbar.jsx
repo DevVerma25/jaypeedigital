@@ -66,7 +66,7 @@ export default function Navbar() {
         : darkMode ? 'bg-[#1A1A2E]' : 'bg-white';
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg} border-b ${darkMode ? 'border-[#374151]' : 'border-[#E5E7EB]'}`}>
+        <nav className={`fixed top-8 left-0 right-0 z-50 transition-all duration-300 ${navBg} border-b ${darkMode ? 'border-[#374151]' : 'border-[#E5E7EB]'}`}>
             {/* Top Bar */}
             <div className="max-w-[1440px] mx-auto px-6 py-2 flex items-center gap-4">
                 {/* Logo (use Jaypee-Logo.png from public/) */}
