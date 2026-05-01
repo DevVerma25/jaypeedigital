@@ -20,6 +20,7 @@ const ShootingStar = () => {
                 ease: "linear"
             }}
             className="absolute w-28 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent rotate-[-45deg] blur-[1px] shadow-[0_0_12px_rgba(255,255,255,0.8)]"
+            aria-hidden="true"
             style={{
                 top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 50}%`,
@@ -40,7 +41,7 @@ function HeroMedia() {
     ];
 
     return (
-        <div className="relative w-full h-full flex items-center justify-center pointer-events-none" style={{ perspective: '2000px' }}>
+        <div className="relative w-full h-full flex items-center justify-center pointer-events-none" style={{ perspective: '2000px' }} aria-hidden="true">
             {/* Ambient Background Glows */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-[#7f2880]/15 to-[#c084c8]/5 rounded-full blur-[140px]" />
             {/* 3D Tilted Orbit Container */}
@@ -269,8 +270,10 @@ export default function Hero() {
                                         ? 'bg-[#7f2880] text-white shadow-lg scale-105'
                                         : darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-[#7f2880]'
                                     }`}
+                                aria-label={`Switch to ${state} view`}
+                                aria-pressed={userState === state}
                             >
-                                {state === 'guest' ? <User size={16} /> : state === 'student' ? <GraduationCap size={16} /> : <UserCheck size={16} />}
+                                {state === 'guest' ? <User size={16} aria-hidden="true" /> : state === 'student' ? <GraduationCap size={16} aria-hidden="true" /> : <UserCheck size={16} aria-hidden="true" />}
                                 {state}
                             </button>
                         ))}
@@ -307,7 +310,7 @@ export default function Hero() {
                                         Start Learning Free
                                     </button>
                                     <button className="px-10 py-5 rounded-xl border-2 border-white/20 text-white font-black hover:bg-white/10 transition-all backdrop-blur-sm uppercase tracking-widest text-xs flex items-center gap-2">
-                                        Explore Library <ArrowRight size={18} />
+                                        Explore Library <ArrowRight size={18} aria-hidden="true" />
                                     </button>
                                 </div>
 
@@ -350,7 +353,7 @@ export default function Hero() {
                                         { icon: Bookmark, label: 'Saved', value: '3', unit: 'Items', color: '#a855a0' },
                                     ].map(({ icon: Icon, value, unit, color }) => (
                                         <div key={unit} className="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-5 hover:bg-white/15 transition-all group">
-                                            <Icon size={20} className="mb-3 transition-transform group-hover:scale-110" style={{ color }} />
+                                            <Icon size={20} className="mb-3 transition-transform group-hover:scale-110" style={{ color }} aria-hidden="true" />
                                             <div className="text-3xl font-black text-white mb-0.5">{value}</div>
                                             <div className="text-[11px] font-bold text-white/50 uppercase tracking-widest">{unit}</div>
                                         </div>
@@ -358,7 +361,7 @@ export default function Hero() {
                                 </div>
 
                                 <button className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-white text-[#7f2880] font-black text-sm uppercase tracking-wider hover:bg-[#EFE0F0] transition-all hover:shadow-2xl hover:-translate-y-1 active:scale-95">
-                                    Resume Your Path <ArrowRight size={18} />
+                                    Resume Your Path <ArrowRight size={18} aria-hidden="true" />
                                 </button>
                             </motion.div>
                         )}
@@ -377,10 +380,11 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.5 }}
                 onClick={scrollToNext}
+                aria-label="Scroll to content"
                 className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 text-white/50 hover:text-white transition-colors group"
             >
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Scroll</span>
-                <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center p-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em]" aria-hidden="true">Scroll</span>
+                <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center p-1.5" aria-hidden="true">
                     <motion.div
                         animate={{ y: [0, 12, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity }}

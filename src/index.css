@@ -19,6 +19,27 @@
   --gradient-dark: linear-gradient(135deg, #1A1A2E 0%, #2D1B4E 100%);
 }
 
+@layer base {
+  :focus-visible {
+    outline: 2px solid #c084c8;
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }

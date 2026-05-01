@@ -47,8 +47,8 @@ function ContentCard({ item, darkMode }) {
                 )}
                 <p className={`text-xs font-medium mb-0.5 ${darkMode ? 'text-gray-300' : 'text-[#1A1A1A]'}`}>{item.author}</p>
                 <p className={`text-xs mb-3 ${darkMode ? 'text-gray-500' : 'text-[#6B7280]'}`}>{item.edition}</p>
-                <button className="flex items-center gap-1 text-xs font-semibold text-[#7f2880] hover:text-[#a855a0] transition-colors group">
-                    <Eye size={12} /> Preview <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                <button className="flex items-center gap-1 text-xs font-semibold text-[#7f2880] hover:text-[#a855a0] transition-colors group" aria-label={`Preview ${item.title}`}>
+                    <Eye size={12} aria-hidden="true" /> Preview <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
                 </button>
             </div>
         </motion.div>
@@ -98,11 +98,19 @@ export default function NewArrivals() {
                     </div>
                     <div className="flex items-center gap-4">
                         <div className="flex items-center gap-2">
-                            <button onClick={() => scroll(-1)} className={`p-3 rounded-full border transition-all hover:scale-110 active:scale-95 ${darkMode ? 'border-[#374151] text-gray-400 hover:bg-[#252540] hover:text-white' : 'border-[#E5E7EB] text-gray-500 hover:bg-gray-50 hover:text-[#7f2880]'}`}>
-                                <ChevronLeft size={20} />
+                            <button 
+                                onClick={() => scroll(-1)} 
+                                aria-label="Scroll left"
+                                className={`p-3 rounded-full border transition-all hover:scale-110 active:scale-95 ${darkMode ? 'border-[#374151] text-gray-400 hover:bg-[#252540] hover:text-white' : 'border-[#E5E7EB] text-gray-500 hover:bg-gray-50 hover:text-[#7f2880]'}`}
+                            >
+                                <ChevronLeft size={20} aria-hidden="true" />
                             </button>
-                            <button onClick={() => scroll(1)} className={`p-3 rounded-full border transition-all hover:scale-110 active:scale-95 ${darkMode ? 'border-[#374151] text-gray-400 hover:bg-[#252540] hover:text-white' : 'border-[#E5E7EB] text-gray-500 hover:bg-gray-50 hover:text-[#7f2880]'}`}>
-                                <ChevronRight size={20} />
+                            <button 
+                                onClick={() => scroll(1)} 
+                                aria-label="Scroll right"
+                                className={`p-3 rounded-full border transition-all hover:scale-110 active:scale-95 ${darkMode ? 'border-[#374151] text-gray-400 hover:bg-[#252540] hover:text-white' : 'border-[#E5E7EB] text-gray-500 hover:bg-gray-50 hover:text-[#7f2880]'}`}
+                            >
+                                <ChevronRight size={20} aria-hidden="true" />
                             </button>
                         </div>
                         <div className={`w-[1px] h-8 ${darkMode ? 'bg-[#374151]' : 'bg-gray-200'} hidden md:block`} />

@@ -35,15 +35,17 @@ export default function ContinueReading() {
                     <div className="flex items-center gap-2">
                         <button
                             onClick={() => scroll(-1)}
+                            aria-label="Scroll left"
                             className={`p-2 rounded-full border transition-all hover:scale-105 ${darkMode ? 'border-[#374151] text-gray-400 hover:border-[#7f2880] hover:text-[#c084c8]' : 'border-[#E5E7EB] text-gray-500 hover:border-[#7f2880] hover:text-[#7f2880]'}`}
                         >
-                            <ChevronLeft size={18} />
+                            <ChevronLeft size={18} aria-hidden="true" />
                         </button>
                         <button
                             onClick={() => scroll(1)}
+                            aria-label="Scroll right"
                             className={`p-2 rounded-full border transition-all hover:scale-105 ${darkMode ? 'border-[#374151] text-gray-400 hover:border-[#7f2880] hover:text-[#c084c8]' : 'border-[#E5E7EB] text-gray-500 hover:border-[#7f2880] hover:text-[#7f2880]'}`}
                         >
-                            <ChevronRight size={18} />
+                            <ChevronRight size={18} aria-hidden="true" />
                         </button>
                     </div>
                 </div>
@@ -93,8 +95,8 @@ export default function ContinueReading() {
                                     />
                                 </div>
 
-                                <button className="flex items-center gap-1 text-sm font-semibold text-[#7f2880] hover:text-[#a855a0] transition-colors group">
-                                    Resume <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                <button className="flex items-center gap-1 text-sm font-semibold text-[#7f2880] hover:text-[#a855a0] transition-colors group" aria-label={`Resume reading ${item.title}`}>
+                                    Resume <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                                 </button>
                             </motion.div>
                         );

@@ -33,8 +33,8 @@ export default function ClinicalCases() {
                             Sharpen your diagnostic thinking with real-world presentations
                         </p>
                     </div>
-                    <button className="flex items-center gap-1.5 text-sm font-semibold text-[#7f2880] hover:text-[#a855a0] transition-colors group">
-                        View All Cases <ExternalLink size={14} className="group-hover:scale-110 transition-transform" />
+                    <button className="flex items-center gap-1.5 text-sm font-semibold text-[#7f2880] hover:text-[#a855a0] transition-colors group" aria-label="View all clinical cases">
+                        View All Cases <ExternalLink size={14} className="group-hover:scale-110 transition-transform" aria-hidden="true" />
                     </button>
                 </div>
 
@@ -54,7 +54,7 @@ export default function ClinicalCases() {
                                 className={`group rounded-2xl p-5 sm:p-6 border transition-all duration-200 hover:shadow-xl hover:-translate-y-1.5 cursor-pointer overflow-hidden relative ${darkMode ? 'bg-[#252540] border-[#374151]' : 'bg-white border-[#E5E7EB] shadow-sm'}`}
                             >
                                 {/* Icon */}
-                                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 ${darkMode ? 'bg-[#1A1A2E] text-[#c084c8]' : 'bg-[#EFE0F0] text-[#7f2880]'}`}>
+                                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 ${darkMode ? 'bg-[#1A1A2E] text-[#c084c8]' : 'bg-[#EFE0F0] text-[#7f2880]'}`} aria-hidden="true">
                                     <Icon size={28} strokeWidth={1.5} />
                                 </div>
 
@@ -80,8 +80,8 @@ export default function ClinicalCases() {
 
                                 {/* CTA */}
                                 <div className="flex items-center justify-between">
-                                    <button className="flex items-center gap-2 text-sm font-bold text-[#7f2880] group-hover:gap-3 transition-all">
-                                        Read Analysis <ArrowRight size={16} />
+                                    <button className="flex items-center gap-2 text-sm font-bold text-[#7f2880] group-hover:gap-3 transition-all" aria-label={`Read analysis for ${caseItem.title}`}>
+                                        Read Analysis <ArrowRight size={16} aria-hidden="true" />
                                     </button>
                                 </div>
                             </motion.div>

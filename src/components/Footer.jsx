@@ -49,7 +49,7 @@ export default function Footer() {
                     {/* Col 1: Brand */}
                     <div className="max-w-xs">
                         <div className="flex items-center gap-3 mb-6">
-                            <img src="/images/Jaypee-Logo.png" alt="Jaypee Logo" className="h-20 object-contain invert opacity-90" />
+                            <img src="/images/Jaypee-Logo.png" alt="Jaypee Digital" className="h-20 object-contain invert opacity-90" />
                         </div>
                         <p className="text-sm leading-relaxed text-gray-400 mb-8">
                             India's premier medical knowledge platform for students, faculty, and institutions. Empowering the next generation of healthcare professionals.
@@ -96,11 +96,14 @@ export default function Footer() {
                     <div className="relative">
                         <button
                             onClick={() => setShowRegion(v => !v)}
+                            aria-haspopup="listbox"
+                            aria-expanded={showRegion}
+                            aria-label="Change region"
                             className="flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-full border border-white/10"
                         >
-                            <Globe size={14} />
+                            <Globe size={14} aria-hidden="true" />
                             {region}
-                            <ChevronDown size={14} className={`transition-transform ${showRegion ? 'rotate-180' : ''}`} />
+                            <ChevronDown size={14} className={`transition-transform ${showRegion ? 'rotate-180' : ''}`} aria-hidden="true" />
                         </button>
                         {showRegion && (
                             <div className="absolute bottom-full right-0 mb-4 w-52 rounded-2xl shadow-2xl bg-[#1A1A2E] border border-white/10 overflow-hidden z-50">
@@ -109,6 +112,7 @@ export default function Footer() {
                                         <button
                                             key={r}
                                             onClick={() => { setRegion(r); setShowRegion(false); }}
+                                            aria-label={`Select ${r}`}
                                             className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-colors hover:bg-white/5 ${r === region ? 'text-[#c084c8] bg-white/5 font-bold' : 'text-gray-400'}`}
                                         >
                                             {r}

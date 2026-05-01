@@ -68,10 +68,11 @@ export default function Newsletter() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
-                            onSubmit={handleSubmit}
                             className="flex gap-2 max-w-lg mx-auto"
                         >
+                            <label htmlFor="newsletter-email" className="sr-only">Email address for newsletter</label>
                             <input
+                                id="newsletter-email"
                                 type="email"
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
@@ -100,6 +101,8 @@ export default function Newsletter() {
                             key="success"
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
+                            role="status"
+                            aria-live="polite"
                             className="flex items-center justify-center gap-3 text-white font-semibold text-lg"
                         >
                             <CheckCircle size={28} className="text-green-300" />
