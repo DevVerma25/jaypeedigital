@@ -9,8 +9,8 @@ import IntelligentSearch from './components/IntelligentSearch';
 import TrendingTopics from './components/TrendingTopics';
 import Newsletter from './components/Newsletter';
 import Testimonials from './components/Testimonials';
-import ContentCounters from './components/ContentCounters';
 import Footer from './components/Footer';
+import AccessibilityBar from './components/AccessibilityBar';
 import { useUserState } from './context/UserStateContext';
 import { useDarkMode } from './context/DarkModeContext';
 
@@ -21,11 +21,14 @@ function AppInner() {
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-[#1A1A2E]' : 'bg-white'}`}>
+      {/* Top Accessibility Bar */}
+      <AccessibilityBar />
+
       {/* Sticky Navbar */}
       <Navbar />
 
       {/* Main Content */}
-      <main>
+      <main id="main-content">
         {/* Hero — always visible */}
         <Hero />
 
@@ -47,9 +50,6 @@ function AppInner() {
 
         {/* Newsletter */}
         <Newsletter />
-
-        {/* Content Counters */}
-        <ContentCounters />
       </main>
 
       {/* Footer */}

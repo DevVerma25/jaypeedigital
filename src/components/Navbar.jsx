@@ -66,19 +66,21 @@ export default function Navbar() {
         : darkMode ? 'bg-[#1A1A2E]' : 'bg-white';
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg} border-b ${darkMode ? 'border-[#374151]' : 'border-[#E5E7EB]'}`}>
+        <nav className={`fixed top-8 left-0 right-0 z-50 transition-all duration-300 ${navBg} border-b ${darkMode ? 'border-[#374151]' : 'border-[#E5E7EB]'}`}>
             {/* Top Bar */}
             <div className="max-w-[1440px] mx-auto px-6 py-2 flex items-center gap-4">
                 {/* Logo (use Jaypee-Logo.png from public/) */}
-                <a href="#" className="flex items-center gap-2 shrink-0 mr-2">
-                    <img src="/images/Jaypee-Logo.png" alt="Jaypee Logo" className="h-14 object-contain" />
+                <a href="#" className="flex items-center gap-2 shrink-0 mr-2" aria-label="Jaypee Digital Home">
+                    <img src="/images/Jaypee-Logo.png" alt="" className="h-14 object-contain" aria-hidden="true" />
                 </a>
 
                 {/* Search Bar (hidden on small screens) */}
                 <div className="hidden md:block flex-1 max-w-2xl">
                     <div className={`flex items-center rounded-xl border ${darkMode ? 'border-[#374151] bg-[#252540]' : 'border-[#E5E7EB] bg-gray-50'} overflow-hidden`}>
-                        <Search size={16} className="ml-3 text-gray-400 shrink-0" />
+                        <Search size={16} className="ml-3 text-gray-400 shrink-0" aria-hidden="true" />
+                        <label htmlFor="main-search" className="sr-only">Search books, clinical cases, videos...</label>
                         <input
+                            id="main-search"
                             type="text"
                             value={searchQuery}
                             onChange={e => setSearchQuery(e.target.value)}
@@ -89,10 +91,13 @@ export default function Navbar() {
                         <div className="relative" ref={contentRef}>
                             <button
                                 onClick={() => setShowContentDropdown(v => !v)}
+                                aria-haspopup="listbox"
+                                aria-expanded={showContentDropdown}
+                                aria-label="Select content type"
                                 className={`flex items-center gap-1 px-3 py-2.5 text-sm font-medium border-l ${darkMode ? 'border-[#374151] text-gray-300 hover:text-white' : 'border-[#E5E7EB] text-gray-600 hover:text-[#7f2880]'} transition-colors`}
                             >
                                 {searchContent}
-                                <ChevronDown size={14} className={`transition-transform ${showContentDropdown ? 'rotate-180' : ''}`} />
+                                <ChevronDown size={14} className={`transition-transform ${showContentDropdown ? 'rotate-180' : ''}`} aria-hidden="true" />
                             </button>
                             {showContentDropdown && (
                                 <div className={`absolute right-0 top-full mt-1 w-44 rounded-xl shadow-xl border z-50 overflow-hidden ${darkMode ? 'bg-[#252540] border-[#374151]' : 'bg-white border-[#E5E7EB]'}`}>
@@ -116,13 +121,20 @@ export default function Navbar() {
                 {/* Right Actions */}
                 <div className="flex items-center gap-2 ml-auto shrink-0">
                     {/* Mobile menu toggle */}
-                    <button onClick={() => setMobileMenuOpen(v => !v)} className="md:hidden p-2 rounded-md">
-                        {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+                    <button 
+                        onClick={() => setMobileMenuOpen(v => !v)} 
+                        className="md:hidden p-2 rounded-md"
+                        aria-label="Toggle mobile menu"
+                        aria-expanded={mobileMenuOpen}
+                    >
+                        {mobileMenuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
                     </button>
                     {/* Support Dropdown (desktop only) */}
                     <div className="relative hidden md:block" ref={supportRef}>
                         <button
                             onClick={() => setShowSupportDropdown(v => !v)}
+                            aria-haspopup="true"
+                            aria-expanded={showSupportDropdown}
                             className={`text-sm font-medium px-3 py-2 rounded-lg border transition-colors ${darkMode ? 'border-[#374151] text-gray-300 hover:border-[#7f2880] hover:text-white' : 'border-[#E5E7EB] text-gray-600 hover:border-[#7f2880] hover:text-[#7f2880]'}`}
                         >
                             Support
@@ -147,6 +159,8 @@ export default function Navbar() {
                     <div className="relative hidden md:block" ref={profileRef}>
                         <button
                             onClick={() => setShowProfileDropdown(v => !v)}
+                            aria-haspopup="true"
+                            aria-expanded={showProfileDropdown}
                             className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-95"
                             style={{ background: 'linear-gradient(135deg, #7f2880 0%, #a855a0 50%, #c084c8 100%)' }}
                         >
@@ -191,9 +205,10 @@ export default function Navbar() {
                     {/* Dark Mode Toggle */}
                     <button
                         onClick={toggleDarkMode}
+                        aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
                         className={`p-2 rounded-full transition-all hover:scale-110 ${darkMode ? 'bg-[#252540] text-yellow-300 hover:bg-[#374151]' : 'bg-gray-100 text-gray-600 hover:bg-[#EFE0F0]'}`}
                     >
-                        {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+                        {darkMode ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
                     </button>
                 </div>
             </div>

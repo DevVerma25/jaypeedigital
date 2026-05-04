@@ -20,6 +20,7 @@ const ShootingStar = () => {
                 ease: "linear"
             }}
             className="absolute w-28 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent rotate-[-45deg] blur-[1px] shadow-[0_0_12px_rgba(255,255,255,0.8)]"
+            aria-hidden="true"
             style={{
                 top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 50}%`,
@@ -40,7 +41,7 @@ function HeroMedia() {
     ];
 
     return (
-        <div className="relative w-full h-full flex items-center justify-center pointer-events-none" style={{ perspective: '2000px' }}>
+        <div className="relative w-full h-full flex items-center justify-center pointer-events-none" style={{ perspective: '2000px' }} aria-hidden="true">
             {/* Ambient Background Glows */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-[#7f2880]/15 to-[#c084c8]/5 rounded-full blur-[140px]" />
             {/* 3D Tilted Orbit Container */}
@@ -111,11 +112,11 @@ function HeroMedia() {
                                 }}
                             >
                                 <motion.div
-                                    className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl flex items-center justify-center"
+                                    className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center"
                                     style={{ transformStyle: 'preserve-3d' }}
                                 >
                                     <div 
-                                        className="absolute inset-0 rounded-2xl opacity-20 blur-xl"
+                                        className="absolute inset-0 opacity-30 blur-2xl"
                                         style={{ backgroundColor: item.color }}
                                     />
                                     
@@ -160,8 +161,8 @@ export default function Hero() {
     const { darkMode } = useDarkMode();
     const { isLoggedIn, setUserState, userState, currentUser } = useUserState();
 
-    const lightGradient = 'linear-gradient(135deg, #1a051a 0%, #2b0b2b 55%, #4b0f47 85%, #6e2a6e 100%)';
-    const darkGradient = 'linear-gradient(135deg, #05000a 0%, #0d0115 60%, #1c0826 85%, #3d1050 100%)';
+    const lightGradient = 'linear-gradient(135deg, #000000 0%, #120212 60%, #250625 100%)';
+    const darkGradient = 'linear-gradient(135deg, #000000 0%, #020005 60%, #080110 100%)';
 
     const bgGradient = darkMode ? darkGradient : lightGradient;
     const curveFill = darkMode ? '#1A1A2E' : '#EFE0F0';
@@ -174,7 +175,10 @@ export default function Hero() {
     };
 
     return (
-        <section style={{ background: bgGradient }} className="min-h-screen flex flex-col relative overflow-hidden">
+        <section 
+            style={{ background: bgGradient }} 
+            className="min-h-screen flex flex-col relative overflow-hidden contrast-[1.1] brightness-[1.05]"
+        >
             {/* Floating decorative elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <motion.div
@@ -252,15 +256,12 @@ export default function Hero() {
                 </div>
             </div>
 
-            {/* Prototype Toggle Banner */}
-            <div className="bg-amber-50 border border-amber-200 text-amber-800 text-[10px] uppercase tracking-widest font-bold py-1 px-4 text-center absolute top-0 left-0 right-0 z-10">
-                PROTOTYPE TOGGLE — Switch user state for demo review
-            </div>
 
-            <div className="flex-1 flex flex-col justify-center pt-16 pb-24 relative z-10">
-                {/* Toggle pill */}
-                <div className="flex justify-center mb-16">
-                    <div className={`flex items-center rounded-full p-1 border ${darkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-white/50'} shadow-xl backdrop-blur-md`}>
+
+            <div className="flex-1 flex flex-col justify-center pt-32 sm:pt-40 pb-24 relative z-10">
+                {/* Toggle pill - Shifted to right as requested */}
+                <div className="flex justify-end mb-8 px-6 sm:px-12">
+                    <div className={`flex items-center rounded-xl p-1 border ${darkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-white/50'} shadow-2xl backdrop-blur-md`}>
                         {['guest', 'student', 'faculty'].map(state => (
                             <button
                                 key={state}
@@ -269,8 +270,10 @@ export default function Hero() {
                                         ? 'bg-[#7f2880] text-white shadow-lg scale-105'
                                         : darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-[#7f2880]'
                                     }`}
+                                aria-label={`Switch to ${state} view`}
+                                aria-pressed={userState === state}
                             >
-                                {state === 'guest' ? <User size={16} /> : state === 'student' ? <GraduationCap size={16} /> : <UserCheck size={16} />}
+                                {state === 'guest' ? <User size={16} aria-hidden="true" /> : state === 'student' ? <GraduationCap size={16} aria-hidden="true" /> : <UserCheck size={16} aria-hidden="true" />}
                                 {state}
                             </button>
                         ))}
@@ -307,7 +310,7 @@ export default function Hero() {
                                         Start Learning Free
                                     </button>
                                     <button className="px-10 py-5 rounded-xl border-2 border-white/20 text-white font-black hover:bg-white/10 transition-all backdrop-blur-sm uppercase tracking-widest text-xs flex items-center gap-2">
-                                        Explore Library <ArrowRight size={18} />
+                                        Explore Library <ArrowRight size={18} aria-hidden="true" />
                                     </button>
                                 </div>
 
@@ -350,7 +353,7 @@ export default function Hero() {
                                         { icon: Bookmark, label: 'Saved', value: '3', unit: 'Items', color: '#a855a0' },
                                     ].map(({ icon: Icon, value, unit, color }) => (
                                         <div key={unit} className="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-5 hover:bg-white/15 transition-all group">
-                                            <Icon size={20} className="mb-3 transition-transform group-hover:scale-110" style={{ color }} />
+                                            <Icon size={20} className="mb-3 transition-transform group-hover:scale-110" style={{ color }} aria-hidden="true" />
                                             <div className="text-3xl font-black text-white mb-0.5">{value}</div>
                                             <div className="text-[11px] font-bold text-white/50 uppercase tracking-widest">{unit}</div>
                                         </div>
@@ -358,7 +361,7 @@ export default function Hero() {
                                 </div>
 
                                 <button className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-white text-[#7f2880] font-black text-sm uppercase tracking-wider hover:bg-[#EFE0F0] transition-all hover:shadow-2xl hover:-translate-y-1 active:scale-95">
-                                    Resume Your Path <ArrowRight size={18} />
+                                    Resume Your Path <ArrowRight size={18} aria-hidden="true" />
                                 </button>
                             </motion.div>
                         )}
@@ -377,10 +380,11 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.5 }}
                 onClick={scrollToNext}
+                aria-label="Scroll to content"
                 className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 text-white/50 hover:text-white transition-colors group"
             >
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Scroll</span>
-                <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center p-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em]" aria-hidden="true">Scroll</span>
+                <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center p-1.5" aria-hidden="true">
                     <motion.div
                         animate={{ y: [0, 12, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
